@@ -20,6 +20,7 @@ const Message = ({message, toggleStar, toggleSelect,toggleRead}) => {
     toggleRead(message);
   }
 
+
   return (
     <div className={`row message ${checkboxClass} ${messageReadClass}`} onClick={messageReadMessage}>
       <div className="col-xs-1">

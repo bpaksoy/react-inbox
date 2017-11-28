@@ -36,7 +36,16 @@ class App extends Component {
     messages[index].read = !messages[index].read;
     console.log("message", JSON.stringify(message.read));
     this.setState({messages: messages });
+  }
 
+  deleteMessage = (message) => {
+    console.log("hello")
+    const messages = this.state.messages.slice();
+    //insert code here!
+    this.setState({ messages: messages.filter((message)=>{
+      return !message.selected;
+      })
+     });
   }
 
   render() {
@@ -56,8 +65,8 @@ class App extends Component {
           </div>
         </div>
         <div className="container">
-          <Compose/>
-          <Messages messages={this.state.messages} toggleStar={this.toggleStar} toggleSelect={this.toggleSelect} toggleRead={this.toggleRead}/>
+          <Compose deleteMessage={this.deleteMessage.bind(this)}/>
+          <Messages messages={this.state.messages} toggleStar={this.toggleStar} toggleSelect={this.toggleSelect} toggleRead={this.toggleRead} deleteMessage={this.deleteMessage}/>
         </div>
       </div>
     );

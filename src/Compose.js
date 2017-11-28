@@ -1,9 +1,14 @@
 import React from "react";
-import Messages from "./Messages"
+import Messages from "./Messages";
 
-class Compose extends React.Component{
+const Compose =({message, deleteMessage})=> {
 
-render(){
+  // const deletedMessage =(e) => {
+  //   if(checkboxClass){
+  //   deleteMessage(message);
+  //  }
+  // }
+
   return(
     <div>
       <div className="row toolbar">
@@ -39,11 +44,11 @@ render(){
               <option value="gschool">gschool</option>
             </select>
 
-            <button className="btn btn-default">
+            <button className="btn btn-default" onClick={deleteMessage}>
               <i className="fa fa-trash-o"></i>
             </button>
           </div>
-      </div>
+        </div>
     <form className="form-horizontal well">
         <div className="form-group">
           <div className="col-sm-8 col-sm-offset-2">
@@ -67,10 +72,9 @@ render(){
             <input type="submit" value="Send" className="btn btn-primary"/>
           </div>
         </div>
-        </form>
+      </form>
     </div>
   );
- }
 }
 
 
