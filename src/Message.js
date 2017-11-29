@@ -23,8 +23,10 @@ const Message = ({message, toggleStar, toggleSelect,toggleRead, handleChange}) =
 
   const displayLabels = () => {
     return message.labels.map((label, i)=>{
-      return <span key={i} className="label label-warning">{label}</span>;
-    })
+    //  if(message.labels.indexOf(label) === -1){
+        return <span key={i} className="label label-warning">{label}</span>;
+    //  }
+    });
   }
 
 

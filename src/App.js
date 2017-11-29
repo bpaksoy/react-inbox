@@ -50,7 +50,7 @@ class App extends Component {
    const messages = this.state.messages.slice();
 
    this.setState({ messages: messages.map((message)=> {
-       if(message.selected){
+       if(message.selected && !message.labels.includes(label)){
          console.log("hahahhahha",label)
          message.labels.push(label);
        }
