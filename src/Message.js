@@ -20,9 +20,6 @@ const Message = ({message, toggleStar, toggleSelect,toggleRead, handleChange}) =
     toggleRead(message);
   }
 
-  const labelValue = (message) => {
-    handleChange(message);
-  }
 
   const displayLabels = () => {
     return message.labels.map((label, i)=>{
