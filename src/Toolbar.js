@@ -1,9 +1,14 @@
 import React from "react";
 
 
-class Toolbar extends React.Component {
+const Toolbar = ({deleteMessage, addLabel}) => {
 
-  render(){
+  const handleChange= (e)=> {
+    console.log("yatayatattata", e.target.value);
+    e.preventDefault();
+     addLabel(e.target.value);
+
+  }
     return(
       <div className="row toolbar">
         <div className="col-md-12">
@@ -24,7 +29,7 @@ class Toolbar extends React.Component {
             Mark As Unread
           </button>
 
-          <select className="form-control label-select">
+          <select name="label" className="form-control label-select" onChange={handleChange}>
             <option>Apply label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
@@ -38,13 +43,12 @@ class Toolbar extends React.Component {
             <option value="gschool">gschool</option>
           </select>
 
-          <button className="btn btn-default">
+          <button className="btn btn-default" onClick={deleteMessage}>
             <i className="fa fa-trash-o"></i>
           </button>
         </div>
       </div>
     );
-  }
 }
 
 

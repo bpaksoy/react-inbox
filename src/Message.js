@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Message = ({message, toggleStar, toggleSelect,toggleRead}) => {
+const Message = ({message, toggleStar, toggleSelect,toggleRead, handleChange}) => {
   const starClass = message.starred ? 'fa-star' : 'fa-star-o';
   const checkboxClass = message.selected ?  "selected" : "";
   const messageReadClass = message.read ? "read" : "unread";
@@ -20,6 +20,16 @@ const Message = ({message, toggleStar, toggleSelect,toggleRead}) => {
     toggleRead(message);
   }
 
+  const labelValue = (message) => {
+    handleChange(message);
+  }
+
+  const displayLabels = () => {
+    return message.labels.map((label, i)=>{
+      return <span key={i} className="label label-warning">{label}</span>;
+    })
+  }
+
 
   return (
     <div className={`row message ${checkboxClass} ${messageReadClass}`} onClick={messageReadMessage}>
@@ -34,6 +44,7 @@ const Message = ({message, toggleStar, toggleSelect,toggleRead}) => {
         </div>
       </div>
       <div className="col-xs-11">
+        {displayLabels()}
         {message.subject}
       </div>
     </div>
