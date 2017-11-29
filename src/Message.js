@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Message = ({message, toggleStar, toggleSelect,toggleRead, handleChange}) => {
+const Message = ({message, toggleStar, toggleSelect,toggleRead}) => {
   const starClass = message.starred ? 'fa-star' : 'fa-star-o';
   const checkboxClass = message.selected ?  "selected" : "";
   const messageReadClass = message.read ? "read" : "unread";
@@ -23,9 +23,7 @@ const Message = ({message, toggleStar, toggleSelect,toggleRead, handleChange}) =
 
   const displayLabels = () => {
     return message.labels.map((label, i)=>{
-    //  if(message.labels.indexOf(label) === -1){
         return <span key={i} className="label label-warning">{label}</span>;
-    //  }
     });
   }
 

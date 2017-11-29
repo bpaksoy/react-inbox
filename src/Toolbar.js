@@ -4,7 +4,7 @@ import React from "react";
 const Toolbar = ({deleteMessage, addLabel}) => {
 
   const handleChange= (e)=> {
-    console.log("yatayatattata", e.target.value);
+    //console.log("yatayatattata", e.target.value);
     e.preventDefault();
      addLabel(e.target.value);
 
