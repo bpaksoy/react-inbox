@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Messages from './Messages';
 import './App.css';
+
+import Messages from './Messages';
 import Compose from "./Compose";
 import Toolbar from "./Toolbar";
 
@@ -29,12 +30,15 @@ class App extends Component {
    this.setState({messages: messages });
   }
 
-  toggleRead = (message) => {
+  markAsRead = () => {
     const messages = this.state.messages.slice();
-    const index = this.state.messages.indexOf(message);
-    messages[index].read = !messages[index].read;
-    //console.log("message", JSON.stringify(message.read));
-    this.setState({messages: messages });
+    const selectedMessages = messages.filter(message => message.selected === true);
+    const selectedIndex = selectedMessages.map(message => messages.indexOf(message));
+    selectedIndex.forEach(index => {
+      messages[index].read = true;
+      messages[index].selected = !messages[index].selected;
+      this.setState({ messages:messages });
+    })
   }
 
   deleteMessage = (message) => {
@@ -76,9 +80,9 @@ class App extends Component {
           </div>
         </div>
         <div className="container">
-          <Toolbar deleteMessage={this.deleteMessage} addLabel={this.addLabel}/>
+          <Toolbar markAsRead={this.markAsRead} deleteMessage={this.deleteMessage} addLabel={this.addLabel}/>
           <Compose />
-          <Messages messages={this.state.messages} toggleStar={this.toggleStar} toggleSelect={this.toggleSelect} toggleRead={this.toggleRead} deleteMessage={this.deleteMessage}/>
+          <Messages messages={this.state.messages} toggleStar={this.toggleStar} toggleSelect={this.toggleSelect} markAsRead={this.markAsRead} deleteMessage={this.deleteMessage}/>
         </div>
       </div>
     );
