@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const Toolbar = ({deleteMessage, addLabel, markAsRead}) => {
+const Toolbar = ({deleteMessage, addLabel, markAsRead, markAsUnRead}) => {
 
   const handleChange= (e)=> {
     //console.log("yatayatattata", e.target.value);
@@ -25,7 +25,7 @@ const Toolbar = ({deleteMessage, addLabel, markAsRead}) => {
             Mark As Read
           </button>
 
-          <button className="btn btn-default">
+          <button className="btn btn-default" onClick={markAsUnRead}>
             Mark As Unread
           </button>
 

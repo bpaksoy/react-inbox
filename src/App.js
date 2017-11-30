@@ -28,14 +28,31 @@ class App extends Component {
    messages[index].selected = !messages[index].selected;
    console.log("message", JSON.stringify(message.selected));
    this.setState({messages: messages });
-  }
+   }
 
+ toggleRead = (message)=> {
+   const messages = this.state.messages.slice();
+   const index = this.state.messages.indexOf(message);
+   messages[index].read = !messages[index].read;
+   this.setState({messages: messages });
+ }
   markAsRead = () => {
     const messages = this.state.messages.slice();
     const selectedMessages = messages.filter(message => message.selected === true);
     const selectedIndex = selectedMessages.map(message => messages.indexOf(message));
     selectedIndex.forEach(index => {
       messages[index].read = true;
+      messages[index].selected = !messages[index].selected;
+      this.setState({ messages:messages });
+    })
+  }
+
+  markAsUnRead = () => {
+    const messages = this.state.messages.slice();
+    const selectedMessages = messages.filter(message => message.selected === true);
+    const selectedIndex = selectedMessages.map(message => messages.indexOf(message));
+    selectedIndex.forEach(index => {
+      messages[index].read = false;
       messages[index].selected = !messages[index].selected;
       this.setState({ messages:messages });
     })
@@ -80,9 +97,9 @@ class App extends Component {
           </div>
         </div>
         <div className="container">
-          <Toolbar markAsRead={this.markAsRead} deleteMessage={this.deleteMessage} addLabel={this.addLabel}/>
+          <Toolbar markAsRead={this.markAsRead} markAsUnRead={this.markAsUnRead} deleteMessage={this.deleteMessage} addLabel={this.addLabel}/>
           <Compose />
-          <Messages messages={this.state.messages} toggleStar={this.toggleStar} toggleSelect={this.toggleSelect} markAsRead={this.markAsRead} deleteMessage={this.deleteMessage}/>
+          <Messages messages={this.state.messages} toggleStar={this.toggleStar} toggleSelect={this.toggleSelect} markAsRead={this.markAsRead} toggleRead={this.toggleRead} deleteMessage={this.deleteMessage}/>
         </div>
       </div>
     );

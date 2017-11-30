@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Message = ({message, toggleStar, toggleSelect, markAsRead}) => {
+const Message = ({message, toggleStar, toggleSelect, toggleRead}) => {
   const starClass = message.starred ? 'fa-star' : 'fa-star-o';
   const checkboxClass = message.selected ?  "selected" : "";
   const readClass = message.read ? "read" : "unread";
@@ -15,9 +15,6 @@ const Message = ({message, toggleStar, toggleSelect, markAsRead}) => {
     toggleSelect(message);
   }
 
-  const messageRead = () => {
-    markAsRead(message);
-  }
 
   const displayLabels = () => {
     return message.labels.map((label, i)=>{
@@ -25,9 +22,14 @@ const Message = ({message, toggleStar, toggleSelect, markAsRead}) => {
     });
   }
 
+  const readMessage = (e) => {
+    e.stopPropagation();
+    toggleRead(message);
+  }
+
 
   return (
-    <div className={`row message ${checkboxClass} ${readClass}`} onClick={messageRead}>
+    <div className={`row message ${checkboxClass} ${readClass}`} onClick={readMessage}>
       <div className="col-xs-1">
         <div className="row">
           <div className="col-xs-2" onClick={ checkboxMessage }>
