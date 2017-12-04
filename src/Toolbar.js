@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const Toolbar = ({deleteMessage, addLabel, markAsRead, markAsUnRead}) => {
+const Toolbar = ({messages, deleteMessage, addLabel, toggleSelectAll, markAsRead, markAsUnRead}) => {
 
   const handleChange= (e)=> {
     //console.log("yatayatattata", e.target.value);
@@ -9,6 +9,22 @@ const Toolbar = ({deleteMessage, addLabel, markAsRead, markAsUnRead}) => {
      addLabel(e.target.value);
 
   }
+
+  const selectedMessagesCount =  messages.filter(message => message.selected).length
+  let selectAllClass;
+
+  switch(selectedMessagesCount) {
+    case 0:
+      selectAllClass = 'fa-square-o'
+      break;
+    case messages.length:
+      selectAllClass = 'fa-check-square-o'
+      break;
+    default:
+      selectAllClass = 'fa-minus-square-o'
+  }
+
+
     return(
       <div className="row toolbar">
         <div className="col-md-12">
@@ -17,8 +33,8 @@ const Toolbar = ({deleteMessage, addLabel, markAsRead, markAsUnRead}) => {
             unread messages
           </p>
 
-          <button className="btn btn-default">
-            <i className="fa fa-check-square-o"></i>
+          <button className="btn btn-default" onClick={toggleSelectAll}>
+            <i className={`fa ${selectAllClass}`}></i>
           </button>
 
           <button className="btn btn-default" onClick={markAsRead}>

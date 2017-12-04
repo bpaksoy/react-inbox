@@ -36,6 +36,7 @@ class App extends Component {
    messages[index].read = !messages[index].read;
    this.setState({messages: messages });
  }
+
   markAsRead = () => {
     const messages = this.state.messages.slice();
     const selectedMessages = messages.filter(message => message.selected === true);
@@ -58,7 +59,7 @@ class App extends Component {
     })
   }
 
-  deleteMessage = (message) => {
+  deleteMessage = () => {
     const messages = this.state.messages.slice();
     //insert code here!
     this.setState({ messages: messages.filter((message)=>{
@@ -66,6 +67,15 @@ class App extends Component {
       })
      });
   }
+
+ toggleSelectAll=()=>{
+   const selectedMessages= this.state.messages.filter(message => message.selected);
+   const selected = selectedMessages.length !== this.state.messages.length;
+   this.setState({
+     messages: this.state.messages.map(message =>
+       (message.selected !== selected? {...message, selected} : message ))
+   })
+ }
 
   addLabel = (label) => {
    const messages = this.state.messages.slice();
@@ -97,7 +107,7 @@ class App extends Component {
           </div>
         </div>
         <div className="container">
-          <Toolbar markAsRead={this.markAsRead} markAsUnRead={this.markAsUnRead} deleteMessage={this.deleteMessage} addLabel={this.addLabel}/>
+          <Toolbar messages={this.state.messages} markAsRead={this.markAsRead} markAsUnRead={this.markAsUnRead} toggleSelectAll={this.toggleSelectAll} deleteMessage={this.deleteMessage} addLabel={this.addLabel}/>
           <Compose />
           <Messages messages={this.state.messages} toggleStar={this.toggleStar} toggleSelect={this.toggleSelect} markAsRead={this.markAsRead} toggleRead={this.toggleRead} deleteMessage={this.deleteMessage}/>
         </div>
