@@ -109,16 +109,19 @@ removeLabel = (label)=>{
 composeMessage = (subject) =>{
   const messages = this.state.messages.slice();
   const message = {};
-
+  console.log("this is subject",subject);
+  if(subject === ""){
+    this.setState({messages:messages});
+  } else{
   message.id = this.state.messages.length + 1;
   message.subject = subject;
-    console.log("message.subject", message.subject)
   message.read = false;
   message.starred = false;
   message.labels=[];
 
-  this.setState({messages:[...messages, message]})
-  console.log("this is messages", messages)
+  this.setState({messages:[...messages, message], subject:""})
+  //console.log("this is messages", messages)
+ }
 }
 
 

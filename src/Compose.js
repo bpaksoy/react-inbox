@@ -1,21 +1,33 @@
 import React from "react";
 
-const Compose= ({message, composeMessage}) => {
- let currentMessage;
+class Compose extends React.Component{
 
-  const handleChange = (e) =>{
-    currentMessage= e.target.value;
+  constructor(props){
+    super(props);
+    this.state={
+      currentMessage:"",
+      text:"",
+      composeMessage: props.composeMessage
+    }
   }
 
-const handleSubmit=(e)=>{
+  handleChange = (e) =>{
+    let newMessage = e.target.value;
+    this.setState({currentMessage:newMessage, text: e.target.value});
+  }
+
+ handleSubmit=(e)=>{
   e.preventDefault();
-  composeMessage(currentMessage);
-  currentMessage = "";
+  this.state.composeMessage(this.state.currentMessage);
+  this.setState({currentMessage:"", text:""})
+  //currentMessage = "";
 }
 
+//console.log("this is current message", currentMessage);
+render(){
   return(
     <div>
-     <form className="form-horizontal well" onSubmit={handleSubmit}>
+     <form className="form-horizontal well" onSubmit={this.handleSubmit}>
         <div className="form-group">
           <div className="col-sm-8 col-sm-offset-2">
             <h4>Compose Message</h4>
@@ -23,8 +35,8 @@ const handleSubmit=(e)=>{
         </div>
         <div className="form-group">
           <label htmlFor="subject" className="col-sm-2 control-label">Subject</label>
-          <div className="col-sm-8" onChange={handleChange}>
-            <input type="text" className="form-control" id="subject" placeholder="Enter a subject" name="subject"/>
+          <div className="col-sm-8" onChange={this.handleChange}>
+            <input type="text" value={this.state.text} className="form-control" id="subject" placeholder="Enter a subject" name="subject"/>
           </div>
         </div>
         <div className="form-group">
@@ -41,6 +53,7 @@ const handleSubmit=(e)=>{
       </form>
     </div>
   );
+}
 }
 
 
