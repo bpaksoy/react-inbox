@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const Toolbar = ({messages, deleteMessage, addLabel, toggleSelectAll, markAsRead, markAsUnRead}) => {
+const Toolbar = ({messages, deleteMessage, addLabel, toggleSelectAll, markAsRead, markAsUnRead, removeLabel}) => {
 
   const handleChange= (e)=> {
     //console.log("yatayatattata", e.target.value);
@@ -9,6 +9,12 @@ const Toolbar = ({messages, deleteMessage, addLabel, toggleSelectAll, markAsRead
      addLabel(e.target.value);
 
   }
+
+const handleChange2 =(e)=>{
+  e.preventDefault();
+  removeLabel(e.target.value);
+}
+
 
   const selectedMessagesCount =  messages.filter(message => message.selected).length
   let selectAllClass;
@@ -52,7 +58,7 @@ const Toolbar = ({messages, deleteMessage, addLabel, toggleSelectAll, markAsRead
             <option value="gschool">gschool</option>
           </select>
 
-          <select className="form-control label-select">
+          <select className="form-control label-select" onChange={handleChange2}>
             <option>Remove label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
