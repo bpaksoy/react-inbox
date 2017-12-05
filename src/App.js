@@ -90,6 +90,7 @@ class App extends Component {
  });
 }
 
+
 removeLabel = (label)=>{
    const messages = this.state.messages.slice();
    this.setState({messages: messages.map(message =>{
@@ -104,6 +105,22 @@ removeLabel = (label)=>{
    })
  });
 }
+
+composeMessage = (subject) =>{
+  const messages = this.state.messages.slice();
+  const message = {};
+
+  message.id = this.state.messages.length + 1;
+  message.subject = subject;
+    console.log("message.subject", message.subject)
+  message.read = false;
+  message.starred = false;
+  message.labels=[];
+
+  this.setState({messages:[...messages, message]})
+  console.log("this is messages", messages)
+}
+
 
   render() {
     return (
@@ -123,7 +140,7 @@ removeLabel = (label)=>{
         </div>
         <div className="container">
           <Toolbar messages={this.state.messages} markAsRead={this.markAsRead} markAsUnRead={this.markAsUnRead} toggleSelectAll={this.toggleSelectAll} deleteMessage={this.deleteMessage} addLabel={this.addLabel} removeLabel={this.removeLabel}/>
-          <Compose />
+          <Compose messages={this.state.messages} composeMessage={this.composeMessage}/>
           <Messages messages={this.state.messages} toggleStar={this.toggleStar} toggleSelect={this.toggleSelect} markAsRead={this.markAsRead} toggleRead={this.toggleRead} deleteMessage={this.deleteMessage}/>
         </div>
       </div>

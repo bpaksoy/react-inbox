@@ -3,6 +3,15 @@ import React from "react";
 
 const Toolbar = ({messages, deleteMessage, addLabel, toggleSelectAll, markAsRead, markAsUnRead, removeLabel}) => {
 
+  let unreadCount;
+  const unreadMessages = messages.filter(message =>
+    {
+      return message.read === false;
+    }
+  );
+  unreadCount = unreadMessages.length;
+
+
   const handleChange= (e)=> {
     //console.log("yatayatattata", e.target.value);
     e.preventDefault();
@@ -31,11 +40,12 @@ const handleChange2 =(e)=>{
   }
 
 
+
     return(
       <div className="row toolbar">
         <div className="col-md-12">
           <p className="pull-right">
-            <span className="badge badge">2</span>
+            <span className="badge badge">{unreadCount}</span>
             unread messages
           </p>
 
