@@ -1,19 +1,17 @@
 import React from "react";
 
 const Compose= ({message, composeMessage}) => {
-
+ let currentMessage;
 
   const handleChange = (e) =>{
-    const subject = e.target.value;
-    //console.log("this is subject", subject);
-    composeMessage(subject);
+    currentMessage= e.target.value;
   }
 
 const handleSubmit=(e)=>{
   e.preventDefault();
+  composeMessage(currentMessage);
+  currentMessage = "";
 }
-
-
 
   return(
     <div>
