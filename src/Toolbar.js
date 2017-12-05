@@ -39,8 +39,6 @@ const handleChange2 =(e)=>{
       selectAllClass = 'fa-minus-square-o'
   }
 
-
-
     return(
       <div className="row toolbar">
         <div className="col-md-12">
