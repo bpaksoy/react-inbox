@@ -20,10 +20,8 @@ class Compose extends React.Component{
   e.preventDefault();
   this.state.composeMessage(this.state.currentMessage);
   this.setState({currentMessage:"", text:""})
-  //currentMessage = "";
 }
 
-//console.log("this is current message", currentMessage);
 render(){
   return(
     <div>

@@ -120,7 +120,6 @@ composeMessage = (subject) =>{
   message.labels=[];
 
   this.setState({messages:[...messages, message], subject:""})
-  //console.log("this is messages", messages)
  }
 }
 
