@@ -113,7 +113,7 @@ composeMessage = (subject) =>{
   if(subject === ""){
     this.setState({messages:messages});
   } else{
-  message.id = this.state.messages.length + 1;
+  message.id = this.state.messages.indexOf(message);
   message.subject = subject;
   message.read = false;
   message.starred = false;
